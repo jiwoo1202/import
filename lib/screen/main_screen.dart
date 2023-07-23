@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
+import 'package:import_new_pr/screen/myPage/myPageMain.dart';
+import 'package:http/http.dart' as http;
 import '../provider/user_state.dart';
+import 'login_register/loginPage.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -36,7 +38,7 @@ class _BottomNavigatorState extends State<BottomNavigator> with TickerProviderSt
   @override
   void initState() {
     super.initState();
-    _widgetOptions = [MainScreen(),MainScreen(),MainScreen(),MainScreen()];
+    _widgetOptions = [LoginPage(),MainScreen(),MainScreen(),MypageMain()];
     _bottomTabController = TabController(length: 4, vsync: this);
     // _bottomTabController.animateTo(0);
   }
@@ -56,13 +58,18 @@ class _BottomNavigatorState extends State<BottomNavigator> with TickerProviderSt
           indicatorColor: Colors.transparent,
           indicatorSize: TabBarIndicatorSize.label,
           controller: _bottomTabController,
-          unselectedLabelStyle: TextStyle(fontSize: 12),
-          labelStyle: TextStyle(fontSize: 12,),
+          unselectedLabelStyle: TextStyle(fontSize: 14,fontFamily: 'NotoSans'),
+          labelStyle: TextStyle(fontSize: 14,fontFamily: 'NotoSans'),
           unselectedLabelColor: Colors.grey,
           labelColor: const Color(0xff3D6177),
           tabs: <Widget>[
-            Tab(
-              text: '홈',
+            GestureDetector(
+              onTap: ()async{
+
+              },
+              child: Tab(
+                text: '홈',
+              ),
             ),
             Tab(
               text: '커뮤니티',
@@ -83,4 +90,5 @@ class _BottomNavigatorState extends State<BottomNavigator> with TickerProviderSt
       ),
     );
   }
+
 }

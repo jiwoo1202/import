@@ -1,12 +1,25 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'screen/login_register/loginPage.dart';
+import 'screen/main/mainPage.dart';
 import 'screen/main_screen.dart';
 
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  print('-- WidgetsFlutterBinding.ensureInitialized');
+  // NotificationController.initioalizeNotificationService();
+  // print('-- NotificationController.initioalizeNotificationService');
+  await initializeDateFormatting();
+  await Firebase.initializeApp();
+  print('-- main: Firebase.initializeApp');
+
+  runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -20,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BottomNavigator()
+      home: LoginPage()
     );
   }
 }
