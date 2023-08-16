@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:import_new_pr/screen/myPage/myPageMain.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'screen/login_register/loginPage.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginPage()
+      home: MypageMain()
     );
   }
 }

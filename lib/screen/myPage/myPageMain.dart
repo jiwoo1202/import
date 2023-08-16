@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:import_new_pr/util/color.dart';
+
+import '../../util/code.dart';
 
 class MypageMain extends StatefulWidget {
   const MypageMain({super.key});
@@ -24,6 +27,29 @@ class _MypageMainState extends State<MypageMain> {
     '설정',
     '로그아웃'
   ];
+
+  final String markdownText = '**ㄴㅇㄹㄴㅁㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ**\n' +
+      '~~ㅋㅌㅇㄹㅋㅌㄹ~~\n' +
+      'ㅁㄴㅇㄹㅁㅂㅈㄷㄱ미나애두니;멈밷ㅈ\n' +
+      '\n' +
+      '```\n' +
+      "var express = require('express');\n" +
+      'var router = express.Router();\n' +
+      '\n' +
+      '/* GET home page. */\n' +
+      "router.get('/', function(req, res, next) {\n" +
+      "    res.render('index', { title: 'Express' });\n" +
+      '});\n' +
+      '\n' +
+      'module.exports = router;\n' +
+      '\n' +
+      '```\n' +
+      '\n' +
+      '- ㅁㄴㅇㄹㄷㄴㅇㄹ\n' +
+      '- ㅇㄹ\n' +
+      '\n' +
+      '- [ ] ㄴㅇㄹㅇㄴㄴㅇㄹ';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +94,41 @@ class _MypageMainState extends State<MypageMain> {
             ),
             SizedBox(
               height: 14,
+            ),
+
+            Container(
+              width: Get.width,
+              height: 500,
+              child: Markdown(
+                  key: const Key("defaultmarkdownformatter"),
+                  data: markdownText,
+                  selectable: true,
+                  padding: const EdgeInsets.all(10),
+                  builders: {
+                    'code': CodeElementBuilder(),
+                  }),
+              // Markdown(data: markdownText,
+              //     builders: {
+              //       'code': CodeElementBuilder(),
+              //     },
+              //     styleSheet: MarkdownStyleSheet(
+              //   //titleStyle
+              //   h1:  TextStyle(fontSize: 24,color: Colors.white,fontWeight: FontWeight.w700),
+              //   //sub
+              //   h2: TextStyle(color: Colors.white, fontSize: 30),
+              //   blockquoteDecoration: BoxDecoration(
+              //       color: Colors.black
+              //   ),
+              //    code: TextStyle(
+              //      color: Colors.white,
+              //        backgroundColor: Colors.black
+              //    ),
+              //    codeblockDecoration: BoxDecoration(
+              //      color: Colors.black
+              //    ),
+              // ),
+              //
+              // ),
             ),
             Expanded(
               child: Container(
