@@ -5,6 +5,7 @@ import 'package:import_new_pr/screen/myPage/myPageMain.dart';
 import 'package:http/http.dart' as http;
 import '../provider/user_state.dart';
 import 'login_register/loginPage.dart';
+import 'main/mainPage.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold();
   }
 }
+
 class BottomNavigator extends StatefulWidget {
   static final String id = '/bottom';
 
@@ -36,17 +38,19 @@ class _BottomNavigatorState extends State<BottomNavigator> with TickerProviderSt
   @override
   void initState() {
     super.initState();
-    _widgetOptions = [LoginPage(),MainScreen(),MainScreen(),MypageMain()];
+    _widgetOptions = [MainPage(),MainScreen(),MainScreen(),MypageMain()];
     _bottomTabController = TabController(length: 4, vsync: this);
+    _currentIndex = 0;
+    setState(() {});
     // _bottomTabController.animateTo(0);
   }
 
   @override
   Widget build(BuildContext context) {
     final us = Get.put(UserState());
-
     return Scaffold(
       bottomNavigationBar: Container(
+      height: 130,
         child: TabBar(
           onTap: (index) {
             setState(() {
@@ -60,11 +64,10 @@ class _BottomNavigatorState extends State<BottomNavigator> with TickerProviderSt
           labelStyle: TextStyle(fontSize: 14,fontFamily: 'NotoSans'),
           unselectedLabelColor: Colors.grey,
           labelColor: const Color(0xff3D6177),
+
           tabs: <Widget>[
             GestureDetector(
-              onTap: ()async{
-
-              },
+              onTap: ()async{},
               child: Tab(
                 text: '홈',
               ),
